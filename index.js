@@ -15,8 +15,9 @@
 
 const express = require('express')
 const app = express()
-const port = 14000
+const port = 18000
 const book=require('./book/book')
+const book_review=require('./book/book_review')
 
 app.get('/books', (req, res) => {
   book.getAll().then((result)=>{
@@ -42,3 +43,8 @@ app.listen(port, () => {
   }
 
   run();
+
+app.get('/book_review',(req,res) => {
+  console.log("book_review111")
+  console.log(req.query)
+})

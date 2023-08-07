@@ -33,7 +33,9 @@ async function run() {
     console.log(await get(2));
   }
 
-  run().catch((ex) => {
-    console.error(ex.stack);
-    process.exit(1);
-  });
+//   run().catch((ex) => {
+//     console.error(ex.stack);
+//     process.exit(1);
+//   });
+
+module.exports = {get,set}
