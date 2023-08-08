@@ -4,7 +4,7 @@ const {sql} = require('@databases/sqlite');
 const db = connect();
 
 async function prepare(){
-    await db.query(sql`CREATE TABLE book (id int NOT NULL PRIMARY KEY, name VARCHAR NOT NULL,
+    await db.query(sql`CREATE TABLE book (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name VARCHAR NOT NULL,
         author VARCHAR NOT NULL, description VARCHAR NOT NULL);`);
 }
 
@@ -35,17 +35,19 @@ async function get(id){
     }
 }
 
-async function run() {
-    await set(1, 'Krupa','krupa author','krupa description');
-    console.log(await get(1));
-    await set(2, 'Forbes Lindesay','author 2','description 2');
-    console.log(await get(2));
-    console.log(await getAll());
+async function run(){
+    set(1, 'Book 1','Auther 1','Description 1');
+    set(2, 'Book 2','Auther 2','Description 2');
+    set(3, 'Book 3','Auther 3','Description 3');
+    set(4, 'Book 4','Auther 4','Description 4');
+    set(5, 'Book 5','Auther 5','Description 5');
+    set(6, 'Book 6','Auther 6','Description 6');
+    set(7, 'Book 7','Auther 7','Description 7');
+    set(8, 'Book 8','Auther 8','Description 8');
+    set(9, 'Book 9','Auther 9','Description 9');
+    set(10, 'Book 10','Auther 10','Description 10');
   }
 
-//   run().catch((ex) => {
-//     console.error(ex.stack);
-//     process.exit(1);
-//   });
+  run();
 
   module.exports = {set,get,getAll}
