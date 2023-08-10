@@ -54,9 +54,9 @@ app.get('/book_reviews',(req,res) => {
   });
 })
 
-app.post('/add_review',(req,res) =>{
+app.post('/books/:book_id/review',(req,res) =>{
   const body = req.body
-  book_review.set(body.review, body.rating, body.book_id).then(()=>{
+  book_review.set(body.review, body.rating, req.params.book_id).then(()=>{
     res.send("Added successfully.")
   });
 })
