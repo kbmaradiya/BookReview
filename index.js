@@ -15,11 +15,22 @@
 
 const express = require('express')
 const app = express()
-const port = 27000
+const port = 8000
 const book=require('./book/book')
 const book_review=require('./book/book_review')
+const cors = require('cors');
 
 app.use(express.json());
+app.use(cors());
+
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    '*'
+  );
+  next();
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
@@ -45,7 +56,7 @@ app.get('/book_reviews',(req,res) => {
 
 app.post('/add_review',(req,res) =>{
   const body = req.body
-  book_review.set(body.review,"date","time",body.rating,body.book_id).then(()=>{
+  book_review.set(body.review, body.rating, body.book_id).then(()=>{
     res.send("Added successfully.")
   });
 })
